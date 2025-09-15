@@ -1,7 +1,4 @@
-You got it. Here's a complete `README.md` file for your `Data-Quality-Checker` project. You can copy and paste this directly into a `README.md` file in your repository.
-
------
-
+ 
 # Data-Quality-Checker
 
 A lightweight Python command-line interface (CLI) tool that scans CSV and Excel files to check for common data quality issues. It generates a clean, user-friendly HTML report summarizing missing values, duplicate rows, and data types.

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { color: #333; }
+        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Quality Report</h1>
+        <p><strong>File:</strong> {{ file_name }}</p>
+        <p><strong>Shape:</strong> {{ shape[0] }} rows, {{ shape[1] }} columns</p>
+
+        <h2>Missing Values</h2>
+        {% if missing_values %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Missing Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for col, count in missing_values.items() %}
+                <tr>
+                    <td>{{ col }}</td>
+                    <td>{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No missing values found. ✨</p>
+        {% endif %}
+
+        <h2>Duplicates</h2>
+        {% if duplicates_count > 0 %}
+        <p>Found {{ duplicates_count }} duplicate rows.</p>
+        {% else %}
+        <p>No duplicate rows found. ✨</p>
+        {% endif %}
+
+        <h2>Data Types</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Column</th>
+                    <th>Inferred Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for col, dtype in dtypes.items() %}
+                <tr>
+                    <td>{{ col }}</td>
+                    <td>{{ dtype }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
